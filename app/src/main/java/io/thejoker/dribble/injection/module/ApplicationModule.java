@@ -28,7 +28,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApplicationModule {
 
     private Application mApplication;
-    public static final String BASE_URL = "https://api.openweathermap.org/data/2.5";
+    public static final String BASE_URL =
+            "https://api.darksky.net/forecast/"+BuildConfig.OPEN_WEATHER_API_KEY+"/";
 
     public ApplicationModule(Application mApplication) {
         this.mApplication = mApplication;
@@ -46,38 +47,36 @@ public class ApplicationModule {
         return mApplication.getApplicationContext();
     }
 
-    @Singleton
-    @Provides
-    OkHttpClient provideHttpClient(){
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        Request original = chain.request();
-                        HttpUrl originalHttUrl = original.url();
-
-                        HttpUrl url = originalHttUrl.newBuilder()
-                                .addQueryParameter("APPID", BuildConfig.OPEN_WEATHER_API_KEY)
-                                .addQueryParameter("cnt", "7")
-                                .build();
-                        Request.Builder requestBuilder = original.newBuilder()
-                                .url(url);
-
-                        Request request = requestBuilder.build();
-                        return chain.proceed(request);
-                    }
-                }).build();
-        return okHttpClient;
-    }
+//    @Singleton
+//    @Provides
+//    OkHttpClient provideHttpClient(){
+//        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//                .addInterceptor(new Interceptor() {
+//                    @Override
+//                    public Response intercept(Chain chain) throws IOException {
+//                        Request original = chain.request();
+//                        HttpUrl originalHttUrl = original.url();
+//
+//                        HttpUrl url = originalHttUrl.newBuilder()
+//                                .query(BuildConfig.OPEN_WEATHER_API_KEY)
+//                                .build();
+//                        Request.Builder requestBuilder = original.newBuilder()
+//                                .url(url);
+//
+//                        Request request = requestBuilder.build();
+//                        return chain.proceed(request);
+//                    }
+//                }).build();
+//        return okHttpClient;
+//    }
 
         @Singleton
         @Provides
-        public WeatherService provideWeatherService(OkHttpClient httpClient) {
+        public WeatherService provideWeatherService() {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(httpClient)
                     .baseUrl(BASE_URL)
                     .build();
 

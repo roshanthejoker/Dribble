@@ -1,0 +1,11 @@
+
+CREATE TABLE location
+            (
+            location_id INTEGER PRIMARY KEY,
+            location_name TEXT NOT NULL,
+            coord_lat REAL NOT NULL,
+            coord_lon REAL NOT NULL);
+
+
+select_location: select * from location;
+select_location_id: select location_id from location;

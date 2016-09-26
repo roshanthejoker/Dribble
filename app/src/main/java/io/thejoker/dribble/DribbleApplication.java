@@ -3,7 +3,6 @@ package io.thejoker.dribble;
 import android.app.Application;
 import android.content.Context;
 
-import dagger.internal.DaggerCollections;
 import io.thejoker.dribble.injection.component.ApplicationComponent;
 import io.thejoker.dribble.injection.component.DaggerApplicationComponent;
 import io.thejoker.dribble.injection.module.ApplicationModule;
@@ -31,7 +30,7 @@ public class DribbleApplication extends Application {
         return mAppComponent;
     }
 
-    public DribbleApplication getApplication(Context context){
+    public static DribbleApplication getApplication(Context context){
         return (DribbleApplication) context.getApplicationContext();
     }
 }

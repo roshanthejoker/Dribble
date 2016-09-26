@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import io.thejoker.dribble.data.DataManager;
+import io.thejoker.dribble.data.local.DatabaseHelper;
 import io.thejoker.dribble.data.local.PreferenceHelper;
 import io.thejoker.dribble.data.remote.WeatherService;
 import io.thejoker.dribble.injection.ActivityScope;
@@ -24,4 +25,5 @@ public interface ApplicationComponent {
     WeatherService weatherService();
     PreferenceHelper preferenceHelper();
     DataManager dataManager();
+    DatabaseHelper databaseHelper();
 }

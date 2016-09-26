@@ -1,0 +1,1 @@
+select_all: SELECT * FROM weather join location on location.location_id = weather.location_id;

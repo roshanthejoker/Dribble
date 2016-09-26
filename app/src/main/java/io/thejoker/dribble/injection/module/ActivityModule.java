@@ -1,6 +1,7 @@
 package io.thejoker.dribble.injection.module;
 
 import android.app.Activity;
+import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
@@ -18,6 +19,17 @@ public class ActivityModule {
 
     public ActivityModule(Activity mActivity) {
         this.mActivity = mActivity;
+    }
+
+    @Provides
+    Activity provideActivity(){
+        return mActivity;
+    }
+
+    @Provides
+    @ActivityScope
+    Context provideContext(){
+        return mActivity;
     }
 
 
