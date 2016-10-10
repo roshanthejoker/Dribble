@@ -6,6 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import io.thejoker.dribble.data.model.database.Location;
+import io.thejoker.dribble.data.model.database.Weather;
 import io.thejoker.dribble.injection.AppContext;
 
 /**
@@ -16,7 +19,7 @@ import io.thejoker.dribble.injection.AppContext;
 public class DbOpenHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME="forecast.db";
-    private static final int DATABASE_VERSION =1;
+    private static final int DATABASE_VERSION =2;
 
 
     @Inject
@@ -26,14 +29,29 @@ public class DbOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.beginTransaction();
+        try {
+
+            db.beginTransaction();
+            db.execSQL(Location.CREATE_TABLE);
+            db.execSQL(Weather.CREATE_TABLE);
+            db.setTransactionSuccessful();
+            System.out.println("OnCreate Called");
+        }
+
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            db.endTransaction();
+        }
 
     }
 
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.delete(Weather.TABLE_NAME,null,null);
+        db.delete(Location.TABLE_NAME,null,null);
         onCreate(db);
     }
 }

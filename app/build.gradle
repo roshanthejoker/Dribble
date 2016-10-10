@@ -15,7 +15,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
 
-        buildConfigField "String", "OPEN_WEATHER_API_KEY", '"771073612f3941c96a8770aeea99ef00"'
+        buildConfigField "String", "DARK_SKY_API_KEY", '"9e8e0f7e3820a2170af0fe398e01a375"'
 
     }
     buildTypes {
@@ -53,4 +53,5 @@ dependencies {
     compile 'com.google.auto.value:auto-value:1.2'
     apt "com.google.auto.value:auto-value:1.2"
     compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 }

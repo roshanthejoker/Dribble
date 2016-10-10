@@ -2,6 +2,7 @@ package io.thejoker.dribble.injection.module;
 
 import android.app.Application;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.io.IOException;
 
@@ -16,6 +17,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -29,7 +31,7 @@ public class ApplicationModule {
 
     private Application mApplication;
     public static final String BASE_URL =
-            "https://api.darksky.net/forecast/"+BuildConfig.OPEN_WEATHER_API_KEY+"/";
+            "https://api.darksky.net/forecast/"+BuildConfig.DARK_SKY_API_KEY+"/";
 
     public ApplicationModule(Application mApplication) {
         this.mApplication = mApplication;
@@ -47,39 +49,29 @@ public class ApplicationModule {
         return mApplication.getApplicationContext();
     }
 
-//    @Singleton
-//    @Provides
-//    OkHttpClient provideHttpClient(){
-//        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-//                .addInterceptor(new Interceptor() {
-//                    @Override
-//                    public Response intercept(Chain chain) throws IOException {
-//                        Request original = chain.request();
-//                        HttpUrl originalHttUrl = original.url();
-//
-//                        HttpUrl url = originalHttUrl.newBuilder()
-//                                .query(BuildConfig.OPEN_WEATHER_API_KEY)
-//                                .build();
-//                        Request.Builder requestBuilder = original.newBuilder()
-//                                .url(url);
-//
-//                        Request request = requestBuilder.build();
-//                        return chain.proceed(request);
-//                    }
-//                }).build();
-//        return okHttpClient;
-//    }
+
+    @Singleton
+    @Provides
+    OkHttpClient provideHttpClient(){
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.addInterceptor(logging);
+        OkHttpClient okHttpClient = httpClient.build();
+
+        return okHttpClient;
+    }
 
         @Singleton
         @Provides
-        public WeatherService provideWeatherService() {
+        public WeatherService provideWeatherService(OkHttpClient okHttpClient) {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .baseUrl(BASE_URL)
+                    .client(okHttpClient)
                     .build();
-
             return retrofit.create(WeatherService.class);
         }
 }

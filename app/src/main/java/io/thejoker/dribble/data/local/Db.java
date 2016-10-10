@@ -2,10 +2,6 @@ package io.thejoker.dribble.data.local;
 
 import android.content.ContentValues;
 
-import io.thejoker.dribble.data.model.openweather.City;
-import io.thejoker.dribble.data.model.openweather.ForecastList;
-import io.thejoker.dribble.data.model.openweather.Weather;
-
 /**
  * Created by thejoker on 22/9/16.
  */
@@ -56,29 +52,29 @@ class Db {
             " REFERENCES " + CityTable.TABLE_NAME + "(" + CityTable.COLUMN_ID + "));";
 
 
-
-    static ContentValues LocationToContentValues(City city){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(CityTable.COLUMN_ID,city.getId());
-        contentValues.put(CityTable.COLUMN_LOCATION_NAME,city.getName());
-        contentValues.put(CityTable.COLUMN_COORD_LAT,city.getCoord().getLat());
-        contentValues.put(CityTable.COLUMN_COORD_LON,city.getCoord().getLon());
-        return contentValues;
-    }
-
-    static ContentValues WeatherToContentValues(ForecastList forecast,Weather weather){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(WeatherTable.COLUMN_ID,1);
-        contentValues.put(WeatherTable.COLUMN_DATE,forecast.getDt());
-        contentValues.put(WeatherTable.COLUMN_TEMP,forecast.getMain().getTemp());
-        contentValues.put(WeatherTable.COLUMN_TEMP_MIN,forecast.getMain().getTempMax());
-        contentValues.put(WeatherTable.COLUMN_TEMP_MAX,forecast.getMain().getTempMax());
-        contentValues.put(WeatherTable.COLUMN_PRESSURE,forecast.getMain().getPressure());
-        contentValues.put(WeatherTable.COLUMN_SHORT_DESC,weather.getDescription());
-        contentValues.put(WeatherTable.COLUMN_HUMIDITY,forecast.getMain().getHumidity());
-
-        return contentValues;
-    }
+//
+//    static ContentValues LocationToContentValues(City city){
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(CityTable.COLUMN_ID,city.getId());
+//        contentValues.put(CityTable.COLUMN_LOCATION_NAME,city.getName());
+//        contentValues.put(CityTable.COLUMN_COORD_LAT,city.getCoord().getLat());
+//        contentValues.put(CityTable.COLUMN_COORD_LON,city.getCoord().getLon());
+//        return contentValues;
+//    }
+//
+//    static ContentValues WeatherToContentValues(ForecastList forecast,Weather weather){
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(WeatherTable.COLUMN_ID,1);
+//        contentValues.put(WeatherTable.COLUMN_DATE,forecast.getDt());
+//        contentValues.put(WeatherTable.COLUMN_TEMP,forecast.getMain().getTemp());
+//        contentValues.put(WeatherTable.COLUMN_TEMP_MIN,forecast.getMain().getTempMax());
+//        contentValues.put(WeatherTable.COLUMN_TEMP_MAX,forecast.getMain().getTempMax());
+//        contentValues.put(WeatherTable.COLUMN_PRESSURE,forecast.getMain().getPressure());
+//        contentValues.put(WeatherTable.COLUMN_SHORT_DESC,weather.getDescription());
+//        contentValues.put(WeatherTable.COLUMN_HUMIDITY,forecast.getMain().getHumidity());
+//
+//        return contentValues;
+//    }
 }
 
 

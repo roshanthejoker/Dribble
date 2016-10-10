@@ -3,13 +3,11 @@ CREATE TABLE weather
             weather_id INTEGER PRIMARY KEY AUTOINCREMENT,
             location_id INTEGER NOT NULL,
             date INTEGER NOT NULL,
-            temperature REAL NOT NULL,
-            description TEXT NOT NULL,
-            min_temperature REAL NOT NULL,
-            max_temperature REAL NOT NULL,
+            summary TEXT NOT NULL,
+            icon TEXT NOT NULL,
+            minTemperature REAL NOT NULL,
+            maxTemperature REAL NOT NULL,
             pressure REAL NOT NULL,
-            humidity REAL NOT NULL,
-            FOREIGN KEY (location_id)
-            REFERENCES location(location_id)
+            humidity REAL NOT NULL
             );
 select_weather: select * from weather;

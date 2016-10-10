@@ -11,92 +11,102 @@ import javax.annotation.Generated;
 
 public class Forecast {
     @Generated("org.jsonschema2pojo")
-    public class Example {
 
-        @SerializedName("latitude")
-        @Expose
-        private Double latitude;
-        @SerializedName("longitude")
-        @Expose
-        private Double longitude;
-        @SerializedName("timezone")
-        @Expose
-        private String timezone;
-        @SerializedName("offset")
-        @Expose
-        private Double offset;
-        @SerializedName("daily")
-        @Expose
-        private DailyForecast daily;
+    @SerializedName("latitude")
+    @Expose
+    private Double latitude;
+    @SerializedName("longitude")
+    @Expose
+    private Double longitude;
+    @SerializedName("timezone")
+    @Expose
+    private String timezone;
+    @SerializedName("offset")
+    @Expose
+    private Double offset;
+    @SerializedName("currently")
+    @Expose
+    private CurrentForecast currentWeather;
+    @SerializedName("daily")
+    @Expose
+    private DailyForecast daily;
 
-        /**
-         * @return The latitude
-         */
-        public Double getLatitude() {
-            return latitude;
-        }
+    /**
+     * @return The latitude
+     */
+    public Double getLatitude() {
+        return latitude;
+    }
 
-        /**
-         * @param latitude The latitude
-         */
-        public void setLatitude(Double latitude) {
-            this.latitude = latitude;
-        }
+    /**
+     * @param latitude The latitude
+     */
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
 
-        /**
-         * @return The longitude
-         */
-        public Double getLongitude() {
-            return longitude;
-        }
+    /**
+     * @return The longitude
+     */
+    public Double getLongitude() {
+        return longitude;
+    }
 
-        /**
-         * @param longitude The longitude
-         */
-        public void setLongitude(Double longitude) {
-            this.longitude = longitude;
-        }
+    /**
+     * @param longitude The longitude
+     */
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
 
-        /**
-         * @return The timezone
-         */
-        public String getTimezone() {
-            return timezone;
-        }
+    /**
+     * @return The timezone
+     */
+    public String getTimezone() {
+        return timezone;
+    }
 
-        /**
-         * @param timezone The timezone
-         */
-        public void setTimezone(String timezone) {
-            this.timezone = timezone;
-        }
+    /**
+     * @param timezone The timezone
+     */
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
 
-        /**
-         * @return The offset
-         */
-        public Double getOffset() {
-            return offset;
-        }
+    /**
+     * @return The offset
+     */
+    public Double getOffset() {
+        return offset;
+    }
 
-        /**
-         * @param offset The offset
-         */
-        public void setOffset(Double offset) {
-            this.offset = offset;
-        }
+    /**
+     * @param offset The offset
+     */
+    public void setOffset(Double offset) {
+        this.offset = offset;
+    }
 
-        /**
-         * @return The daily
-         */
-        public DailyForecast getDaily() {
-            return daily;
-        }
+    /**
+     * @return The daily
+     */
+    public DailyForecast getDaily() {
+        return daily;
+    }
 
-        /**
-         * @param daily The daily
-         */
-        public void setDaily(DailyForecast daily) {
-            this.daily = daily;
-        }
+    /**
+     * @param daily The daily
+     */
+    public void setDaily(DailyForecast daily) {
+        this.daily = daily;
+    }
+
+    public CurrentForecast getCurrentWeather() {
+        return currentWeather;
+    }
+
+    public void setCurrentWeather(CurrentForecast currentForecast) {
+        this.currentWeather = currentForecast;
     }
 }
+

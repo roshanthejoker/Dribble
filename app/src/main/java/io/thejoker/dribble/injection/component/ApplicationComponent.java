@@ -3,6 +3,7 @@ package io.thejoker.dribble.injection.component;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import io.thejoker.dribble.data.ForecastJobService;
 import javax.inject.Singleton;
 
 import dagger.Component;
