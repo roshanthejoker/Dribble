@@ -12,7 +12,7 @@ public class BasePresenter<T extends MvpView> implements Presenter<T> {
     }
 
     @Override
-    public void dettachView() {
+    public void detachView() {
         mMvpView = null;
     }
     private boolean isViewAttached(){

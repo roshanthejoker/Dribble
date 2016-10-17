@@ -24,13 +24,13 @@ import rx.functions.Func0;
 @Singleton
 public class PreferenceHelper {
 
-    public static final String PREF_FILE_NAME = "dribble_pref_file";
+    private static final String PREF_FILE_NAME = "dribble_pref_file";
     private final SharedPreferences mPreferences;
     private static final String PREF_KEY_CURRENT_WEATHER = "PREF_KEY_CURRENT_WEATHER";
     private Gson mGson;
 
     @Inject
-    public PreferenceHelper(@AppContext Context context) {
+    PreferenceHelper(@AppContext Context context) {
         this.mPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         mGson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz")
@@ -47,10 +47,10 @@ public class PreferenceHelper {
 
     private CurrentForecast getCurrentWeather() {
         String currentWeatherJson = mPreferences.getString(PREF_KEY_CURRENT_WEATHER, null);
-        if (currentWeatherJson != null) {
+        if (currentWeatherJson != null)
             return mGson.fromJson(currentWeatherJson, new TypeToken<CurrentForecast>() {
             }.getType());
-        } else {
+        else {
             Log.e("PrefHelper", "Oops there's nothing in the preferences");
             return null;
         }

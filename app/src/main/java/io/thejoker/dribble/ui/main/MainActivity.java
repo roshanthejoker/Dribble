@@ -19,7 +19,7 @@ import javax.inject.Inject;
 public class MainActivity extends BaseActivity implements MainMvpView {
 
   @Inject MainPresenter mPresenter;
-  private final int JOB_ID = 100;
+//  private final int JOB_ID = 100;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -27,29 +27,29 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     mActivityComponent.inject(this);
     setContentView(R.layout.activity_main);
 
-    JobInfo jobInfo =
-        new JobInfo.Builder(JOB_ID, new ComponentName(this, ForecastJobService.class)).setPersisted(
-            true)
-            .setPeriodic(3600000)
-            .setRequiresCharging(false)
-            .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-            .build();
+//    JobInfo jobInfo =
+//        new JobInfo.Builder(JOB_ID, new ComponentName(this, ForecastJobService.class)).setPersisted(
+//            true)
+//            .setPeriodic(3600000)
+//            .setRequiresCharging(false)
+//            .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+//            .build();
 
 
-    JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
-    jobScheduler.schedule(jobInfo);
+//    JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
+//    jobScheduler.schedule(jobInfo);
     mPresenter.attachView(this);
+
+    mPresenter.getCurrentWeather();
   }
 
   @Override protected void onStart() {
     super.onStart();
-    mPresenter.getForecastWeather();
-    mPresenter.getCurrentWeather();
   }
 
   @Override protected void onPause() {
     super.onPause();
-    mPresenter.dettachView();
+    mPresenter.detachView();
   }
 
   @Override public void showCurrentWeather(CurrentWeather currentWeather) {

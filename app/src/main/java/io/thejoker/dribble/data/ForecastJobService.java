@@ -28,21 +28,21 @@ public class ForecastJobService extends JobService {
 
   @Override public boolean onStartJob(final JobParameters params) {
     Log.d("ForecastJobService", "onStartJob Started");
-   mSubscription =  mDataManager.getData().subscribe(new Subscriber<Forecast>() {
-      @Override public void onCompleted() {
-        jobFinished(params, false);
-      }
-
-      @Override public void onError(Throwable e) {
-        jobFinished(params, true);
-      }
-
-      @Override public void onNext(Forecast forecast) {
-        mDbHelper.saveForecastToDb(forecast);
-        mPrefHelper.clearPreferences();
-        mPrefHelper.putCurrentWeather(forecast.getCurrentWeather());
-      }
-    });
+//   mSubscription =  mDataManager.getData().subscribe(new Subscriber<Forecast>() {
+//      @Override public void onCompleted() {
+//        jobFinished(params, false);
+//      }
+//
+//      @Override public void onError(Throwable e) {
+//        jobFinished(params, true);
+//      }
+//
+//      @Override public void onNext(Forecast forecast) {
+//        mDbHelper.saveForecastToDb(forecast);
+//        mPrefHelper.clearPreferences();
+//        mPrefHelper.putCurrentWeather(forecast.getCurrentWeather());
+//      }
+//    });
     return true;
   }
 

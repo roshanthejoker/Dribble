@@ -6,5 +6,5 @@ package io.thejoker.dribble.ui.base;
 
 public interface Presenter<V extends MvpView> {
     void attachView(V mvpView);
-    void dettachView();
+    void detachView();
 }

@@ -54,7 +54,7 @@ public class ApplicationModule {
     @Provides
     OkHttpClient provideHttpClient(){
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(logging);
         OkHttpClient okHttpClient = httpClient.build();
