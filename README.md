@@ -1,7 +1,11 @@
 # Dribble
-A project for learning many useful libraries in Android. **This app is in no way complete. I am just now finishing implementing the bussiness logic.The master is not merged with the development branch yet. For the implemented code switch to development branch. The whole UI is yet to be made. Any rectifications are very welcome.**
+
+A project for learning many useful libraries in Android. 
 
 It is a dead simple weather app with daily forecast.
+
+**This app is in no way complete. I am just now finishing implementing the bussiness logic.The master is not merged with the development branch yet. For the implemented code switch to development branch. The whole UI is yet to be made. Any rectifications are very welcome.**
+
 
 The project structure is inspired by the [Android-Boilterplate](https://github.com/ribot/android-boilerplate) Repo by Ribot.
 
