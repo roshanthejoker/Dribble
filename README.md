@@ -1,5 +1,5 @@
 # Dribble
-A project for learning many useful libraries in Android.
+A project for learning many useful libraries in Android. **This app is in no way complete. I am just now finishing implementing the bussiness logic. The whole UI is yet to be made. Any rectifications are very welcome.**
 
 It is a dead simple weather app with daily forecast.
 
