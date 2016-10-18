@@ -95,12 +95,7 @@ public class DatabaseHelper {
         public Observable<List<WeatherWithLocation>> fetchWeatherWithLocation() {
             return mDb.createQuery(Arrays.asList(Location.TABLE_NAME,Weather.TABLE_NAME),
                     WeatherWithLocation.SELECT_ALL)
-                    .mapToList(new Func1<Cursor, WeatherWithLocation>() {
-                        @Override
-                        public WeatherWithLocation call(Cursor cursor) {
-                            return WeatherWithLocation.map(cursor);
-                        }
-                    });
+                    .mapToList(cursor -> WeatherWithLocation.map(cursor));
         }
 
     }

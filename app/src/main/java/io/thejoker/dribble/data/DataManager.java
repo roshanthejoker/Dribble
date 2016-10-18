@@ -47,13 +47,10 @@ public class DataManager {
         return mWeatherService.getForecast(19.0760, 72.8777, "si")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(new Action1<Forecast>() {
-                    @Override
-                    public void call(Forecast forecast) {
-                        mDbHelper.saveForecastToDb(forecast);
-                        mPrefHelper.clearPreferences();
-                        mPrefHelper.putCurrentWeather(forecast.getCurrentWeather());
-                    }
+                .doOnNext(forecast -> {
+                    mDbHelper.saveForecastToDb(forecast);
+                    mPrefHelper.clearPreferences();
+                    mPrefHelper.putCurrentWeather(forecast.getCurrentWeather());
                 });
 
     }
@@ -153,18 +150,14 @@ public class DataManager {
 
     public Observable<CurrentWeather> getCurrentWeather() {
        return Observable.merge(getCurrentWeatherFromNetwork(), fetchCurrentWeatherFromDb())
-                .onErrorReturn(new Func1<Throwable, CurrentWeather>() {
-                    @Override
-                    public CurrentWeather call(Throwable throwable) {
-                        return null;
-                    }
-                })
-                .filter(new Func1<CurrentWeather, Boolean>() {
-                    @Override
-                    public Boolean call(CurrentWeather currentWeather) {
-                        return currentWeather != null;
-                    }
-                });
+                .onErrorReturn(throwable -> null)
+                .filter(currentWeather -> currentWeather != null);
+    }
+
+    public Observable<List<Weather>> getForecastWeather(){
+        return Observable.merge(getForecastFromNetwork(),fetchWeatherForecastFromDb())
+                .onErrorReturn(throwable -> null)
+                .filter(weathers -> weathers!=null);
     }
 }
 

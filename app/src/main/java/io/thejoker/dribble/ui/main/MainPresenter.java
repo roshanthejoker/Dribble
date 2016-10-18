@@ -77,9 +77,10 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
 //    mSubscription.add(locationSubscription);
     }
 
-    public void getCurrentWeather() {
+    void getCurrentWeather() {
         Subscription currentWeatherSubscription =
                 mDataManager.getCurrentWeather()
+                        .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Subscriber<CurrentWeather>() {
                             @Override
                             public void onCompleted() {

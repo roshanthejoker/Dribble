@@ -14,16 +14,12 @@ import io.thejoker.dribble.LocationModel;
 @AutoValue
 public abstract class Location implements LocationModel {
 
-    public static final Factory<Location> LOCATION_FACTORY = new Factory<>(new Creator<Location>() {
-        @Override
-        public Location create(@Nullable Long location_id, double coordLat, double coordLon) {
-            return new AutoValue_Location.Builder()
+    public static final Factory<Location> LOCATION_FACTORY = new Factory<>(
+            (location_id, coordLat, coordLon) -> new AutoValue_Location.Builder()
                     .setLocation_id(location_id)
                     .setCoordLat(coordLat)
                     .setCoordLon(coordLon)
-                    .build();
-        }
-    });
+                    .build());
 
     static final RowMapper<Location> LOCATION_ROW_MAPPER = LOCATION_FACTORY.select_locationMapper();
 
@@ -35,8 +31,11 @@ public abstract class Location implements LocationModel {
     @AutoValue.Builder
     public abstract static class Builder {
         public abstract Builder setLocation_id(Long value);
+
         public abstract Builder setCoordLat(double value);
+
         public abstract Builder setCoordLon(double value);
+
         public abstract Location build();
     }
 }

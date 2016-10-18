@@ -57,21 +57,18 @@ public class PreferenceHelper {
     }
 
     public Observable<CurrentWeather> getCurrentWeatherAsObservable() {
-        return Observable.defer(new Func0<Observable<CurrentWeather>>() {
-            @Override
-            public Observable<CurrentWeather> call() {
-                CurrentForecast currentForecast = getCurrentWeather();
-                CurrentWeather currentWeather = CurrentWeather.builder()
-                        .setDate(currentForecast.getTime())
-                        .setIcon(currentForecast.getIcon())
-                        .setSummary(currentForecast.getSummary())
-                        .setTemperature(currentForecast.getTemperature())
-                        .setHumidity(currentForecast.getHumidity())
-                        .setPressure(currentForecast.getPressure())
-                        .build();
+        return Observable.defer(() -> {
+            CurrentForecast currentForecast = getCurrentWeather();
+            CurrentWeather currentWeather = CurrentWeather.builder()
+                    .setDate(currentForecast.getTime())
+                    .setIcon(currentForecast.getIcon())
+                    .setSummary(currentForecast.getSummary())
+                    .setTemperature(currentForecast.getTemperature())
+                    .setHumidity(currentForecast.getHumidity())
+                    .setPressure(currentForecast.getPressure())
+                    .build();
 
-                return Observable.just(currentWeather);
-            }
+            return Observable.just(currentWeather);
         });
     }
 
